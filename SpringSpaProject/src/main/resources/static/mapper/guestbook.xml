@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cinamo.roll.mybatis.GuestBookMapper">
+	
+	<select id='totSize' parameterType='com.cinamo.roll.guestbook.GPageVo'
+			resultType = 'Integer'>
+		<!-- 검색어에 따른 전체 개수 -->
+		select count(id) from guestbook 
+		where id like '%${findStr}%'
+		or    doc like '%${findStr}%'
+		or 	  nal like '%${findStr}%'
+	</select>
+	
+	<select id='list' parameterType='com.cinamo.roll.guestbook.GPageVo' 
+			resultType='com.cinamo.roll.guestbook.GuestbookVo'>
+		select * from guestbook
+		where id like '%${findStr}%'
+		or    doc like '%${findStr}%'
+		or 	  nal like '%${findStr}%'
+		order by nal desc, id asc
+		limit #{startNo}, #{listSize}
+	</select>
+	
+	<insert id='insert' parameterType='com.cinamo.roll.guestbook.GPageVo'>
+		insert into guestbook(id, doc, nal, pwd)
+		values(#{id}, #{doc}, now(), #{pwd})
+	</insert>
+	
+	<delete id="delete" parameterType='com.cinamo.roll.guestbook.GPageVo'>
+		delete from guestbook where sno = #{sno} and pwd=#{pwd}
+	</delete>
+	
+	
+	<update id='update' parameterType='com.cinamo.roll.guestbook.GPageVo'>
+		update guestbook set doc=#{doc}
+		where sno = #{sno} and pwd=#{pwd}
+	</update>
+
+	<select id='select10' resultType='com.cinamo.roll.guestbook.GuestbookVo'>
+		select * from guestbook order by nal desc limit 0, 10
+										<!-- 최신순으로 10개 뽑아야 하니까 nal desc-->
+	</select>
+	
+</mapper>

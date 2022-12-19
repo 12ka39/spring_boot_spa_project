@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+#guestbook_list{ 
+	/* for문 감싸고 있는 div. container 라고 한다. 
+	ontain = 아이템을 갖고 있는 부모 
+	*/ 
+	
+	display: flex;
+	flex-direction: column;
+		/* flex-direction는 
+			column이 기본형. 위아래 배치 */
+	/*flex-warp: wrap;
+	 align-items: */
+}
+
+.guestbook_items{
+	flex-basis: auto;
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;	
+	justify-content: space-around;
+	align-content: space-around;
+}
+
+.guestbook_btn{
+	text-align: center; /* flex-basis: 1; */	/* 1배 */
+}
+
+.guestbook_btn input{
+	width: 50px;
+	padding: 10px;
+}
+
+.guestbook_items .frm_guestbook{
+	position: relative;	
+}
+
+.guestbook_items .frm_guestbook .btnZone{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+.guestbook_items .frm_guestbook .updateZone{
+	visibility: hidden;
+	}
+
+
+.item{
+	border: 2px solid #96A5FF;
+	background-color: #B4C3FF;
+	padding: 20px;
+	min-width: 200px;
+}
+
+/* 암호를 입력하는 model box ------  */
+#modal{
+	background-color: rgba(0,0,0,.3);
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index:100;
+	display: none;
+}
+
+
+#modal>#content{
+	width: 300px;
+	margin: 250px auto;
+	padding: 40px;
+	position: relative;
+	background-color: #fff;
+}
+
+
+#modal>#content #btnClose{
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	font-size: 2em;
+	background-color: transparent;
+		/*부모와 바탕색이 같음..??*/
+	border: 0;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
